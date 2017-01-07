@@ -74,7 +74,6 @@ function search(name)
 }
 
 var mPopup;
-var popHtml = '<div class="popup-container"> <div class="popup-header"> <h3 id="owner-header"></h3> </div> <div class="popup-parcel-details"> </div> <a href="#" id="reportLink">Report</a> </div>';
 function createPopup()
 {
     mPopup = L.popup();
@@ -89,14 +88,14 @@ function toTitleCase(str)
 
 function openPopup(item)
 {
-    console.log(item);
     var coords = JSON.parse(item.centroid).coordinates.reverse();
     mPopup.setLatLng(coords);
     map.setView(coords,16,{animate: false});
     //Update data
 
-    var el = $(".popup-parcel-details");
-    var owner = $("#owner-header");
+    var el = $("#myPop .popup-parcel-details");
+    console.log(el);
+    var owner = $("#myPop #owner-header");
     if (item.ownername)
     {
         owner.text(toTitleCase(item.ownername));
@@ -108,7 +107,6 @@ function openPopup(item)
 
     el.empty();
     console.log(el);
-
     for (var property in allowedFields)
     {
         if (allowedFields.hasOwnProperty(property))
@@ -129,7 +127,7 @@ function openPopup(item)
   
     //Set report link
     var url = "report/index.html?parcelnumber=" + item.parcelnumber;
-    var repEl = $("#reportLink");
+    var repEl = $("#myPop #reportLink");
     repEl.attr('href',url);
     mPopup.setContent($("#myPop").html());
     map.openPopup(mPopup);
@@ -140,6 +138,7 @@ function resultClick(resultId)
 {
     //zoomToParcel(searchData[resultId]);
     var item = searchData[resultId];
+    console.log(resultId);
     openPopup(item);
     map.setZoom(16);
 }
