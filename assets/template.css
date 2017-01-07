@@ -186,3 +186,35 @@ html, body, #sidebar, #container {
 #results_list > li.active{
     background-color: red!important;
 }
+
+.popup-container
+{
+    display: block;
+    text-align: left;
+}
+.popup-header
+{
+    width: 100%;
+}
+
+.popup-header > h3
+{
+    font-weight: 600;
+}
+
+.popup-parcel-details
+{
+    width: 100%;
+    font-size: medium;
+}
+.popup-parcel-details > h4
+{
+    width: 100%;
+    font-weight: bold;
+    color: #008000;
+}
+
+
+.leaflet-popup-content p{
+margin: 0px;
+}

@@ -12,6 +12,13 @@
 //	});
 //}
 
+var allowedFields = {
+    "fulladdress" : "Address:",
+    "parcelnumber" : "Parcel #:",
+    "zipcode": "Zip:"
+};
+
+
 
 var searchBox;
 var resultsDiv;
@@ -53,7 +60,7 @@ function search(name)
      var endpoint = "https://cartomike.carto.com/api/v2/sql/";
      var ownerQ = "OWNERNAME ILIKE '%"+name+"%'"
     // ownerQ = ownerQ.split("{NAME}").join(name);
-     var myQuery = "SELECT *,ST_AsGeoJSON(ST_Centroid(the_geom)) as centroid FROM parcels_carto WHERE " + ownerQ + " ORDER BY OWNERNAME LIMIT 25";
+     var myQuery = "SELECT *,ST_AsGeoJSON(ST_Centroid(the_geom)) as centroid FROM parcels_carto WHERE " + ownerQ + " ORDER BY OWNERNAME LIMIT 250";
 
 
     
@@ -67,23 +74,63 @@ function search(name)
 }
 
 var mPopup;
+var popHtml = '<div class="popup-container"> <div class="popup-header"> <h3 id="owner-header"></h3> </div> <div class="popup-parcel-details"> </div> <a href="#" id="reportLink">Report</a> </div>';
 function createPopup()
 {
     mPopup = L.popup();
-    mPopup.setContent($("#myPop").html()).setLatLng(map.getCenter());
+    mPopup.setContent($("#myPop")).setLatLng(map.getCenter());
     map.closePopup();
+}
+
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
 function openPopup(item)
 {
+    console.log(item);
     var coords = JSON.parse(item.centroid).coordinates.reverse();
     mPopup.setLatLng(coords);
     map.setView(coords,16,{animate: false});
     //Update data
+
+    var el = $(".popup-parcel-details");
+    var owner = $("#owner-header");
+    if (item.ownername)
+    {
+        owner.text(toTitleCase(item.ownername));
+    }
+    else
+    {
+        owner.text("");
+    }
+
+    el.empty();
+    console.log(el);
+
+    for (var property in allowedFields)
+    {
+        if (allowedFields.hasOwnProperty(property))
+        {
+            if (item[property] && item[property].length > 0)
+            {
+                //If property is allowed and included in the item object, create element with details
+                var title = $("<h4></h4>");
+                var desc = $("<p></p>");
+                title.text(allowedFields[property]);
+                desc.text(item[property]);
+                el.append(title);
+                el.append(desc);
+            }
+
+        }
+    }
   
-    var el = $("#myPop");
-    el.find('[data-field="name"]').text(item.ownername);
-    el.find('[data-field="address"]').text(item.fulladdress);
+    //Set report link
+    var url = "report/index.html?parcelnumber=" + item.parcelnumber;
+    var repEl = $("#reportLink");
+    repEl.attr('href',url);
     mPopup.setContent($("#myPop").html());
     map.openPopup(mPopup);
 

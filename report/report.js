@@ -119,4 +119,6 @@ function getData()
 	
 }
 
-getData();
+$(function(){
+	getData();
+});

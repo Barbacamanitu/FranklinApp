@@ -1,3 +1,11 @@
 div.cartodb-popup.v2.header div.cartodb-popup-header {
     max-height: 400px;
 }
+.leaflet-popup-content-wrapper
+{
+    padding: 0px;
+}
+
+.leaflet-popup-content {
+margin: 0px;
+}
