@@ -200,6 +200,7 @@ html, body, #sidebar, #container {
 .popup-header > h3
 {
     font-weight: 600;
+    color: #AF0000;
 }
 
 .popup-parcel-details
@@ -211,7 +212,7 @@ html, body, #sidebar, #container {
 {
     width: 100%;
     font-weight: bold;
-    color: #008000;
+    color: #000000;
 }
 
 

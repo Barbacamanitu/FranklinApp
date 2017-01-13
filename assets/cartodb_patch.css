@@ -4,6 +4,8 @@ div.cartodb-popup.v2.header div.cartodb-popup-header {
 .leaflet-popup-content-wrapper
 {
     padding: 0px;
+    border-style: solid;
+    border-width: medium;
 }
 
 .leaflet-popup-content {
