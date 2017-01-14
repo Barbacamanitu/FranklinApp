@@ -52,6 +52,10 @@ $("#sidebarToggleIcon").click(function () {
 
 $(function(){
     handleResize();
+    $(".popup-container").click(function(){
+
+        console.log("asdf");
+    });
 });
 
 $(window).resize(function() {

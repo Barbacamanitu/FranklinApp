@@ -191,31 +191,43 @@ html, body, #sidebar, #container {
 {
     display: block;
     text-align: left;
+    margin: 5px;
+    pointer-events: all;
 }
 .popup-header
 {
     width: 100%;
+
 }
 
 .popup-header > h3
 {
     font-weight: 600;
     color: #AF0000;
+
 }
 
 .popup-parcel-details
 {
     width: 100%;
     font-size: medium;
+
 }
 .popup-parcel-details > h4
 {
     width: 100%;
     font-weight: bold;
     color: #000000;
+
 }
 
 
 .leaflet-popup-content p{
 margin: 0px;
+}
+
+#reportLink
+{
+    margin-top: 20px;
+    display: inline-block;
 }

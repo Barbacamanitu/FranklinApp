@@ -170,3 +170,8 @@ $(function(){
     createPopup();
 }
 );
+
+function popClick(e)
+{
+   var event = e || window.event; event.stopPropagation();
+}
