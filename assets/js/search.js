@@ -33,7 +33,10 @@ function inputChange()
 {
     var input = searchBox.val();
     clearTimeout(pTimer);
-    search(input);
+    pReq && pReq.abort();
+    pTimer = setTimeout(function(){
+        pReq = search(input);
+    },200);
 }
 
 function updateView()
@@ -45,8 +48,7 @@ function updateView()
         var el = $(template);
         el.find('[data-field="name"]').text(toTitleCase(element.ownername));
         el.find('[data-field="address"]').text(element.fulladdress);
-        resultsDiv.append(el);;
-
+        resultsDiv.append(el);
     });
 }
 
@@ -67,7 +69,7 @@ function search(name)
 
 
     
-     $.getJSON(
+     return $.getJSON(
      endpoint,
      { q: myQuery },
      function (data) {    
