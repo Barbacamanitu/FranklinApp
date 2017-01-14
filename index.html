@@ -30,8 +30,7 @@
         <div class="container-fluid">
           <div class="navbar-header">
             <div class="navbar-icon-container">
-              <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i id="sidebarToggleIcon" class="fa-check-square-o fa"></i></a>
-              <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
+              <button id="toggle" type="button" class="navbar-toggle btn" style="height: 34px; padding: 5px 10px; margin-right: 10px;"><i id="sidebarToggleIcon" class="fa fa-map-o" style="color: white"></i></button>
             </div>
             <a class="navbar-brand" href="#">Franklin County</a>
           </div>
@@ -428,7 +427,7 @@ $("#sidebar-collapse").on('hide.bs.collapse', function(){
 
 </script>
 <div id="myPop" style="display:none">
-  <div class="popup-container" onclick="popClick();">
+  <div class="popup-container">
     <div class="popup-header">
       <h3 id="owner-header"></h3>
     </div>
