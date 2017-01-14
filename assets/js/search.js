@@ -27,9 +27,12 @@ searchData.push({name: "myname", address: "theaddress"});
 searchData.push({name: "xx", address: "43434"});
 
 
+var pReq;
+var pTimer;
 function inputChange()
 {
     var input = searchBox.val();
+    clearTimeout(pTimer);
     search(input);
 }
 
@@ -40,7 +43,7 @@ function updateView()
     searchData.forEach(function(element)
     {
         var el = $(template);
-        el.find('[data-field="name"]').text(element.ownername);
+        el.find('[data-field="name"]').text(toTitleCase(element.ownername));
         el.find('[data-field="address"]').text(element.fulladdress);
         resultsDiv.append(el);;
 
