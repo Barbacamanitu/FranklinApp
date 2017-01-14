@@ -16,3 +16,45 @@ function showMoreInfo(data)
 {
     var infoWindow = window.open("/report/index.html");
 }
+
+function handleSidebarVisibility()
+{
+    if ($("#sidebarToggleIcon").hasClass("fa-check-square-o"))
+    {
+        $("#map").hide();
+        $("#sidebar").show();
+    }
+    else
+    {
+        $("#map").show();
+        $("#sidebar").hide();
+    }
+}
+
+function handleResize()
+{
+    if ($(window).width() <= 767)
+    {
+        handleSidebarVisibility();
+    }
+    else
+    {
+        $("#map").show();
+        $("#sidebar").show();
+    }
+}
+
+$("#sidebarToggleIcon").click(function () {
+    //Change button glyph
+    $("#sidebarToggleIcon").toggleClass("fa fa-check-square-o fa fa-map-o");
+    handleSidebarVisibility();
+});
+
+$(function(){
+    handleResize();
+});
+
+$(window).resize(function() {
+  $(".tt-dropdown-menu").css("max-height", $("#container").height()-$(".navbar").height()-20);
+  handleResize();
+});

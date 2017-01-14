@@ -30,7 +30,7 @@
         <div class="container-fluid">
           <div class="navbar-header">
             <div class="navbar-icon-container">
-              <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
+              <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i id="sidebarToggleIcon" class="fa-check-square-o fa"></i></a>
               <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
             </div>
             <a class="navbar-brand" href="#">Franklin County</a>
@@ -389,39 +389,6 @@
 
 var mapState = 0;
 
-$("#toggle").click(function () {
-  $("#toggle i").toggleClass("fa fa-check-square-o fa fa-map-o");
-    if (mapState == 0){
-      $("#sidebar").hide();
-      $("#map").show();
-      mapState = 1;
-    }
-    else{
-      $("#sidebar").show();
-      $("#map").hide();
-      mapState = 0;
-    }
-
-    map.invalidateSize();
-    return false;
-  });
-
-$(window).resize(function() {
-  $(".tt-dropdown-menu").css("max-height", $("#container").height()-$(".navbar").height()-20);
-
-  if (document.body.clientWidth > 767){
-    $("#sidebar").show();
-    $("#map").show();
-  }
-});
-
-// Larger screens get expanded layer control
-if (document.body.clientWidth <= 767) {
-  var isCollapsed = true;
-}
-else {
-  var isCollapsed = false;
-};
 
 // Placeholder hack for IE
 if (navigator.appName == "Microsoft Internet Explorer") {
