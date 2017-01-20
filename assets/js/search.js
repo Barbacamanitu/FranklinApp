@@ -143,7 +143,10 @@ function resultClick(resultId)
 {
     //zoomToParcel(searchData[resultId]);
     var item = searchData[resultId];
-    console.log(resultId);
+    if (isMobile)
+    {
+        $("#sidebarToggleButton").trigger('click');
+    }
     openPopup(item);
     map.setZoom(16);
 }

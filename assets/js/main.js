@@ -19,26 +19,33 @@ function showMoreInfo(data)
 
 function handleSidebarVisibility()
 {
-    if ($("#sidebarToggleIcon").hasClass("fa-check-square-o"))
+    if ($("#sidebarToggleIcon").hasClass("fa-map-o"))
     {
+        //Show sidebar
         $("#map").hide();
         $("#sidebar").show();
+        $("#sidebarToggleText").text('View map');
     }
     else
     {
+        //Show map
         $("#map").show();
         $("#sidebar").hide();
+        $("#sidebarToggleText").text('View Controls');
     }
 }
 
+var isMobile;
 function handleResize()
 {
     if ($(window).width() <= 767)
     {
+        isMobile = true;
         handleSidebarVisibility();
     }
     else
     {
+        isMobile = false;
         $("#map").show();
         $("#sidebar").show();
     }

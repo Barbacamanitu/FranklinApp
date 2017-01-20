@@ -231,3 +231,9 @@ margin: 0px;
     margin-top: 20px;
     display: inline-block;
 }
+
+#sidebarToggleText{
+    color:white;
+    font-weight: bold;
+    margin-right:10px;
+}
