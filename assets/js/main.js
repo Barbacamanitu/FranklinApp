@@ -44,7 +44,7 @@ function handleResize()
     }
 }
 
-$("#sidebarToggleIcon").click(function () {
+$("#sidebarToggleButton").click(function () {
     //Change button glyph
     $("#sidebarToggleIcon").toggleClass("fa fa-check-square-o fa fa-map-o");
     handleSidebarVisibility();
