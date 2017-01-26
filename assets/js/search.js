@@ -68,11 +68,11 @@ function search(name)
      var myQuery = "SELECT *,ST_AsGeoJSON(ST_Centroid(the_geom)) as centroid FROM parcels_carto WHERE " + ownerQ + " ORDER BY OWNERNAME LIMIT 250";
 
 
-    
+
      return $.getJSON(
      endpoint,
      { q: myQuery },
-     function (data) {    
+     function (data) {
          searchData = data.rows;
          updateView();
      });
@@ -95,7 +95,7 @@ function openPopup(item)
 {
     var coords = JSON.parse(item.centroid).coordinates.reverse();
     mPopup.setLatLng(coords);
-    map.setView(coords,16,{animate: false});
+    map.setView(coords,18,{animate: false});
     //Update data
 
     var el = $("#myPop .popup-parcel-details");
@@ -129,7 +129,7 @@ function openPopup(item)
 
         }
     }
-  
+
     //Set report link
     var url = "report/index.html?parcelnumber=" + item.parcelnumber;
     var repEl = $("#myPop #reportLink");
@@ -154,7 +154,7 @@ function resultClick(resultId)
 
 
 $("#results_list").on("click", 'li',function(event) {
-   var item = event.target;  
+   var item = event.target;
    if ((item.tagName != "LI") && (item.parentElement.tagName == "LI"))
    {
        item = item.parentElement;
@@ -162,7 +162,7 @@ $("#results_list").on("click", 'li',function(event) {
 
    var id = $(item).index();
    resultClick(id);
-   
+
 
 });
 

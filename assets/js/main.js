@@ -8,7 +8,7 @@ function zoomToParcel(item)
 {
 	var geoJSON = JSON.parse(item.centroid);
 	var latlng = [geoJSON.coordinates[1],geoJSON.coordinates[0]];
-	openInfowindow(latlng,item.cartodb_id);    
+	openInfowindow(latlng,item.cartodb_id);
     map.setView(latlng,17);
 }
 

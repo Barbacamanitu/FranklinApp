@@ -144,9 +144,7 @@ html, body, #sidebar, #container {
                 margin-left: 5px;
                 margin-right: 5px;
             }
-            .leaflet-popup-content-wrapper {
-                border-radius: 5px;
-            }
+
             .panel-heading a:hover {
                 text-decoration: none;
             }
@@ -200,10 +198,23 @@ html, body, #sidebar, #container {
 
 }
 
+#owner-header
+{
+  background: #727170;
+  padding-left: 10px;
+  margin-left: -10px;
+  padding-right: 10px;
+  margin-right: -10px;
+  padding-top: 5px;
+  margin-top: -5px;
+}
+
 .popup-header > h3
 {
     font-weight: 600;
-    color: #AF0000;
+    color: white;
+    height: 60px;
+    max-height: 50%;
 
 }
 
@@ -221,6 +232,12 @@ html, body, #sidebar, #container {
 
 }
 
+.leaflet-popup-content-wrapper
+{
+    padding: 0px;
+    border-style: solid;
+    border-width: thin;
+}
 
 .leaflet-popup-content p{
 margin: 0px;
