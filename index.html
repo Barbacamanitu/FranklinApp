@@ -21,7 +21,8 @@
 		    <link rel="stylesheet" href="assets/cartodb_patch.css" />
         <link href='http://fonts.googleapis.com/css?family=Fenix|Meddon' rel='stylesheet' type='text/css'>
         <link href= 'assets/template.css' rel='stylesheet' type='text/css'>
-    </head>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">   
+        </head>
 
     <body>
 
@@ -30,9 +31,9 @@
         <div class="container-fluid">
           <div class="navbar-header">
             <div class="navbar-icon-container">
-              <button id="sidebarToggleButton" type="button" class="navbar-toggle btn" style="height: 34px; padding: 5px 10px; margin-right: 10px;"><span id="sidebarToggleText">View Controls</span><i id="sidebarToggleIcon" class="fa fa-check-square-o" style="color: white"></i></button>
+              <button id="sidebarToggleButton" type="button" class="navbar-toggle btn" style="height: 34px; padding: 5px 10px; margin-right: 10px;"><span id="sidebarToggleText">xxx</span><i id="sidebarToggleIcon" class="fa fa-check-square-o" style="color: white"></i></button>
             </div>
-            <a class="navbar-brand" href="#">Franklin County</a>
+            <a class="navbar-brand" style="color: #fff" href="http://franklincountyal.org/" target="_blank"><i>Franklin County</i></a>
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -376,7 +377,7 @@
 <!-- End help modal -->
 
 <!-- This is where leaflet map begins -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="assets/jquery.js"></script>
 <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
 <script src="https://cdn.jsdelivr.net/leaflet.esri/1.0.3/esri-leaflet.js"></script>
@@ -429,11 +430,15 @@ $("#sidebar-collapse").on('hide.bs.collapse', function(){
 <div id="myPop" style="display:none">
   <div class="popup-container">
     <div class="popup-header">
-      <h3 id="owner-header"></h3>
+      <span class="popup-header-title">Owner</span>
+
+      <h3 id="owner-name">
+      </h3>
     </div>
     <div class="popup-parcel-details">
     </div>
-    <a href="#" id="reportLink">More information</a>
+          <a href="#" id="reportLink">More information</a>
+
   </div>
 </div>
 </body>

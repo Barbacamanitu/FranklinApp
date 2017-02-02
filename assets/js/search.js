@@ -68,11 +68,11 @@ function search(name)
      var myQuery = "SELECT *,ST_AsGeoJSON(ST_Centroid(the_geom)) as centroid FROM parcels_carto WHERE " + ownerQ + " ORDER BY OWNERNAME LIMIT 250";
 
 
-
+    
      return $.getJSON(
      endpoint,
      { q: myQuery },
-     function (data) {
+     function (data) {    
          searchData = data.rows;
          updateView();
      });
@@ -91,16 +91,25 @@ function toTitleCase(str)
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
-function openPopup(item)
+var lastObj;
+function testName(name){
+    lastObj.ownername = name;
+
+    openPopup(lastObj);
+}
+
+
+
+function openPopupNew(item)
 {
+    lastObj = item;
     var coords = JSON.parse(item.centroid).coordinates.reverse();
     mPopup.setLatLng(coords);
-    map.setView(coords,18,{animate: false});
+    map.setView(coords,16,{animate: false});
     //Update data
 
     var el = $("#myPop .popup-parcel-details");
-    console.log(el);
-    var owner = $("#myPop #owner-header");
+    var owner = $("#owner-name");
     if (item.ownername)
     {
         owner.text(toTitleCase(item.ownername));
@@ -111,7 +120,6 @@ function openPopup(item)
     }
 
     el.empty();
-    console.log(el);
     for (var property in allowedFields)
     {
         if (allowedFields.hasOwnProperty(property))
@@ -129,7 +137,57 @@ function openPopup(item)
 
         }
     }
+  
+    //Set report link
+    var url = "report/index.html?parcelnumber=" + item.parcelnumber;
+    var repEl = $("#myPop #reportLink");
+    repEl.attr('href',url);
+    mPopup.setContent($("#myPop").html());
+    map.openPopup(mPopup);
 
+}
+
+
+
+
+function openPopup(item)
+{
+    lastObj = item;
+    var coords = JSON.parse(item.centroid).coordinates.reverse();
+    mPopup.setLatLng(coords);
+    map.setView(coords,16,{animate: false});
+    //Update data
+
+    var el = $("#myPop .popup-parcel-details");
+    var owner = $("#owner-name");
+    if (item.ownername)
+    {
+        owner.text(toTitleCase(item.ownername));
+    }
+    else
+    {
+        owner.text("");
+    }
+
+    el.empty();
+    for (var property in allowedFields)
+    {
+        if (allowedFields.hasOwnProperty(property))
+        {
+            if (item[property] && item[property].length > 0)
+            {
+                //If property is allowed and included in the item object, create element with details
+                var title = $("<h4></h4>");
+                var desc = $("<p></p>");
+                title.text(allowedFields[property]);
+                desc.text(item[property]);
+                el.append(title);
+                el.append(desc);
+            }
+
+        }
+    }
+  
     //Set report link
     var url = "report/index.html?parcelnumber=" + item.parcelnumber;
     var repEl = $("#myPop #reportLink");
@@ -154,7 +212,7 @@ function resultClick(resultId)
 
 
 $("#results_list").on("click", 'li',function(event) {
-   var item = event.target;
+   var item = event.target;  
    if ((item.tagName != "LI") && (item.parentElement.tagName == "LI"))
    {
        item = item.parentElement;
@@ -162,7 +220,7 @@ $("#results_list").on("click", 'li',function(event) {
 
    var id = $(item).index();
    resultClick(id);
-
+   
 
 });
 

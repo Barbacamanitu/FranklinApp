@@ -8,7 +8,7 @@ function zoomToParcel(item)
 {
 	var geoJSON = JSON.parse(item.centroid);
 	var latlng = [geoJSON.coordinates[1],geoJSON.coordinates[0]];
-	openInfowindow(latlng,item.cartodb_id);
+	openInfowindow(latlng,item.cartodb_id);    
     map.setView(latlng,17);
 }
 
@@ -24,14 +24,14 @@ function handleSidebarVisibility()
         //Show sidebar
         $("#map").hide();
         $("#sidebar").show();
-        $("#sidebarToggleText").text('View map');
+        $("#sidebarToggleText").text('View Map');
     }
     else
     {
         //Show map
         $("#map").show();
         $("#sidebar").hide();
-        $("#sidebarToggleText").text('View Controls');
+        $("#sidebarToggleText").text('View controls');
     }
 }
 
