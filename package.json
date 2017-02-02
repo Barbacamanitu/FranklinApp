@@ -1,0 +1,29 @@
+{
+  "name": "franklinapp",
+  "version": "0.0.2",
+  "description": "Franklin County map project",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server -d --progress --colors",
+    "wp": "webpack -d"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Barbacamanitu/FranklinApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Barbacamanitu/FranklinApp/issues"
+  },
+  "homepage": "https://github.com/Barbacamanitu/FranklinApp#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.0.50",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^1.16.3",
+    "ts-loader": "^2.0.0",
+    "typescript": "^2.1.5"
+  }
+}
