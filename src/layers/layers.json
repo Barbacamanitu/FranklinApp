@@ -1,0 +1,34 @@
+{
+    "layers": [
+        {
+            "name": "osmBasemap",
+            "type": "tileLayer",
+            "autoAdd": true,
+            "layerOptions": {
+                "url": "http://{s}.tiles.mapbox.com/v3/spatialnetworks.map-6l9yntw9/{z}/{x}/{y}.png",
+                "maxZoom": 19,
+                "subdomains": ["a","b","c","d"],
+                "attribution": "Basemap <a href=\"https://www.mapbox.com/about/maps/\" target=\"_blank\">© Mapbox © OpenStreetMap</a>"
+            }
+        },
+        {
+            "name": "arcBase",
+            "type": "esriTiledMapLayer",
+            "autoAdd": false,
+            "layerOptions":{
+                "url": "http://tiles.arcgis.com/tiles/I97nVdg0OgwKVCpk/arcgis/rest/services/Basemap/MapServer",
+                "opacity": "0.5"
+            }
+        },
+        {
+            "name": "annotations",
+            "type": "esriDynamic",
+            "autoAdd": true,
+            "layerOptions":{
+                "url": "http://8.35.16.158/arcgisserver/rest/services/parcelanno_dyn/MapServer",
+                "opacity": 1.0
+            }
+            
+        }
+    ]
+}

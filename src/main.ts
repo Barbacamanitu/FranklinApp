@@ -1,5 +1,2 @@
-
-setTimeout(function(){
-    console.log('test');
-},1000);
-
+import { FranklinMap } from './FranklinMap';
+let m:FranklinMap = new FranklinMap();
