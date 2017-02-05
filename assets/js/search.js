@@ -78,77 +78,72 @@ function search(name)
      });
 }
 
-var mPopup;
-function createPopup()
-{
-    mPopup = L.popup();
-    mPopup.setContent($("#myPop")).setLatLng(map.getCenter());
-    map.closePopup();
-}
-
 function toTitleCase(str)
 {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
+
+
 function openPopup(item)
 {
-    var coords = JSON.parse(item.centroid).coordinates.reverse();
-    mPopup.setLatLng(coords);
-    map.setView(coords,18,{animate: false});
-    //Update data
+   var coords = JSON.parse(item.centroid).coordinates.reverse();
+   var lPop = L.popup();
+   lPop.setLatLng(coords);
+   var html = '<div class="popup-container"> 	<div class="popup-header"> 		<span class="popup-header-title">Owner</span> 		<h3 id="owner-name"></h3> 	</div> 	<div class="popup-parcel-details"></div> 	<div class="report-link-container"> 		<a href="#" id="report-link">More information</a> 	</div> </div>';
+   var el = $(html);
+   var details = el.find('.popup-parcel-details');
+   el.find('#report-link').attr('href','report/index.html?id=' + item.cartodb_id);
 
-    var el = $("#myPop .popup-parcel-details");
-    console.log(el);
-    var owner = $("#myPop #owner-header");
-    if (item.ownername)
-    {
-        owner.text(toTitleCase(item.ownername));
-    }
-    else
-    {
-        owner.text("");
-    }
+   var owner = el.find("#owner-name");
+   if (item.ownername)
+   {
+       owner.text(toTitleCase(item.ownername));
+   }
+   else
+   {
+       owner.text("Unknown Owner");
+   }
 
-    el.empty();
-    console.log(el);
-    for (var property in allowedFields)
-    {
-        if (allowedFields.hasOwnProperty(property))
-        {
-            if (item[property] && item[property].length > 0)
-            {
-                //If property is allowed and included in the item object, create element with details
-                var title = $("<h4></h4>");
-                var desc = $("<p></p>");
-                title.text(allowedFields[property]);
-                desc.text(item[property]);
-                el.append(title);
-                el.append(desc);
-            }
+   for (var property in allowedFields)
+   {
+       if (allowedFields.hasOwnProperty(property))
+       {
+           if (item[property] && item[property].replace(/\s*/,"").length > 0)
+           {
+               //If property is allowed and included in the item object, create element with details
+               var title = $("<h4></h4>");
+               var desc = $("<p></p>");
+               title.text(allowedFields[property]);
+               desc.text(item[property]);
+               details.append(title);
+               details.append(desc);
+           }
 
-        }
-    }
+       }
+   }
 
-    //Set report link
-    var url = "report/index.html?parcelnumber=" + item.parcelnumber;
-    var repEl = $("#myPop #reportLink");
-    repEl.attr('href',url);
-    mPopup.setContent($("#myPop").html());
-    map.openPopup(mPopup);
+   lPop.setContent(el[0].outerHTML);
+   lPop.openOn(map);
+   map.setView(coords,16,{animate: true});
+   map.invalidateSize();
+
+
 
 }
 
 function resultClick(resultId)
 {
-    //zoomToParcel(searchData[resultId]);
     var item = searchData[resultId];
     if (isMobile)
     {
         $("#sidebarToggleButton").trigger('click');
+        openPopup(item);
     }
-    openPopup(item);
-    map.setZoom(16);
+    else
+    {
+        openPopup(item);
+    }
 }
 
 
@@ -162,15 +157,12 @@ $("#results_list").on("click", 'li',function(event) {
 
    var id = $(item).index();
    resultClick(id);
-
-
 });
 
 
 
 $(function(){
     setupSearchBox();
-    createPopup();
 }
 );
 

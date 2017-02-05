@@ -13,7 +13,6 @@ function createCartoParcel(onCreated)
 
                      layers.cartoParcel.getSubLayer(1).setInteraction(true);
                      layers.cartoParcel.getSubLayer(1).on('featureClick', function(e, latlng, pos, data, layer) {
-                           console.log(data);
                         infowindowFromId(data.cartodb_id);
                      });
 
@@ -23,15 +22,6 @@ function createCartoParcel(onCreated)
                      layer.on('mouseout', function() {
                          $('#map').css('cursor','');
                      });
-
-                   /* cartodb.vis.Vis.addInfowindow(map, layer.getSubLayer(1), ['cartodb_id','ownername'],{
-                        infowindowTemplate: $('#custom_infowindow_template').html(),
-                        templateType: 'mustache'
-                          layers.cartoParcel.on('featureClick', function(e, latlng, pos, data, layer) {
-      console.log(data);
-    });
-
-  });*/
 
               onCreated();
                 }).on('error', function () {
@@ -46,15 +36,13 @@ function infowindowFromId(id)
      var endpoint = "https://cartomike.carto.com/api/v2/sql/";
     // ownerQ = ownerQ.split("{NAME}").join(name);
      var myQuery = "SELECT *,ST_AsGeoJSON(ST_Centroid(the_geom)) as centroid FROM parcels_carto WHERE cartodb_id = " + id;
-console.log(id);
 
 
      $.getJSON(
      endpoint,
      { q: myQuery },
      function (data) {  
-         //console.log(data.rows[0]);  
-         openPopup(data.rows[0]);
+         openPopup(data.rows[0]); 
      });
 }
 
@@ -137,11 +125,6 @@ function createEsriTopo()
 				});
 }
 
-/*function createEsriTopo(onCreated)
-{
-    layers.esriTopo = L.esri.basemapLayer("Topographic");
-}
-*/
 function addMeasureTool()
 {
 	var measureControl = new L.control.measure({
@@ -163,9 +146,7 @@ function createMap()
     map = L.map("map", {
         zoom: 11,
         center: [34.4410, -87.8343],
-       // layers: [layers.mapboxOSM]
     });
-    console.log(map);
     var hash = new L.Hash(map);
 }
 
@@ -179,10 +160,6 @@ $(function(){
 })
 
 
-function getLayerFromId(id)
-{
-    alert(id);
-}
 
 
 /*

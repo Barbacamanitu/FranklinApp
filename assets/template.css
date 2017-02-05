@@ -69,7 +69,9 @@ html, body, #sidebar, #container {
                 font-family: 'Meddon', cursive;
 
             }
-            .navbar-default {
+
+
+            .navbar {
 				background: #f3904f; /* For browsers that do not support gradients */
 				background: -webkit-linear-gradient(left, #1f1c2c, #928dab); /* For Safari 5.1 to 6.0 */
 				background: -o-linear-gradient(right, #1f1c2c, #928dab); /* For Opera 11.1 to 12.0 */
@@ -77,7 +79,7 @@ html, body, #sidebar, #container {
 				background: linear-gradient(to right, #1f1c2c, #928dab); /* Standard syntax (must be last) */
 }
             .navbar-collapse.in {
-                overflow-y: hidden;
+                /*overflow-y: hidden; fixed typeahead cropping*/
             }
 
 
@@ -138,26 +140,10 @@ html, body, #sidebar, #container {
             .search-container {
                 width: 250px;
             }
-            .leaflet-popup-content {
-                margin-top: 5px;
-                margin-bottom: 5px;
-                margin-left: 5px;
-                margin-right: 5px;
-            }
-
             .panel-heading a:hover {
                 text-decoration: none;
             }
-            @media (max-width: 992px) {
-                .navbar .navbar-brand {
-                    font-size: 18px;
-                    float: left;
-
-                }
-                .search-container {
-                    width: 150px;
-                }
-            }
+           
             @media (max-width: 767px){
                 .search-container {
                     width: 100%;
@@ -185,72 +171,147 @@ html, body, #sidebar, #container {
     background-color: red!important;
 }
 
+
+.leaflet-popup-content-wrapper {
+    border:solid 1px black;    
+    overflow:hidden;    
+    -moz-border-radius: 12px;
+    border-radius: 12px;   
+    -moz-background-clip: padding; 
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background:white;
+    padding: 0px;
+}
+
+.leaflet-popup-content p{
+    margin: 0px;
+}
+
+.leaflet-popup-content{
+    margin: 0px;
+}
+
+
+
+
+
+
 .popup-container
 {
     display: block;
-    text-align: left;
-    margin: 5px;
+    text-align: left;    
     pointer-events: all;
+    font-family: 'Roboto', sans-serif;
 }
 .popup-header
 {
-    width: 100%;
-
+    background: gray;
+    padding: 8px;
+    border: red;
+    border-width: 1px;
+    border-style: hidden hidden solid hidden;
 }
 
-#owner-header
-{
-  background: #727170;
-  padding-left: 10px;
-  margin-left: -10px;
-  padding-right: 10px;
-  margin-right: -10px;
-  padding-top: 5px;
-  margin-top: -5px;
+.popup-header-title{
+    color: #dceefb;
+    word-wrap: break-word;
+    display: block;
+    width: 190px;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    color: #CCC;
+    word-wrap: break-word;
+    line-height: 120%;
+    font-family: inherit;
 }
 
-.popup-header > h3
+#owner-name
 {
-    font-weight: 600;
+    display: block;
+    width: 190px;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
     color: white;
-    height: 60px;
-    max-height: 50%;
-
+    text-transform: uppercase;
+    word-wrap: break-word;
+    line-height: 120%;
+    font-family: inherit;
 }
 
 .popup-parcel-details
 {
     width: 100%;
     font-size: medium;
-
+    background: white;
+    padding: 8px;
+    font-family: inherit;
 }
+
+
 .popup-parcel-details > h4
 {
-    width: 100%;
-    font-weight: bold;
+    color: #dceefb;
+    word-wrap: break-word;
+    display: block;
+    width: 190px;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    font-family: inherit;
     color: #000000;
-
+    word-wrap: break-word;
+    line-height: 120%
 }
 
-.leaflet-popup-content-wrapper
-{
-    padding: 0px;
-    border-style: solid;
-    border-width: thin;
-}
 
-.leaflet-popup-content p{
-margin: 0px;
-}
 
 #reportLink
 {
-    margin-top: 20px;
-    display: inline-block;
+
+    display: block;
+    background: white;
+    padding: 5px;
 }
 
-#sidebarToggleText{
-    color:white;
-    font-weight: bold;
-    margin-right:10px;
+
+.slideContainer {
+    overflow: hidden;
+    white-space: nowrap;
 }
+
+
+@media (min-width: 767px) {
+    .desktop-buttons{
+        display: inline-block;
+
+    }
+    .mobile-buttons{
+        display:none;
+    }
+}
+
+@media (max-width: 766px) {
+    .desktop-buttons{
+        display: none;
+    }
+    .mobile-buttons{
+        display:inline-block;
+        vertical-align: bottom;
+    }
+}
+.navbar-header {
+    display:inline-block;
+}
+
+.mobile-button{
+    padding:15px;
+    display:block;
+    font-family: 'Noto Sans', sans-serif;
+    line-height:20px;
+    font-size: 14px;
+    position:relative;
+}
+

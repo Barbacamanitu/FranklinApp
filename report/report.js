@@ -18,11 +18,11 @@ function isString(str)
 function throwError()
 {
 	//Error handler for missing parcel
+	alert("Couldn't retrieve data");
 }
 
 function populateData(data)
 {
-	console.log(data);
 	Object.keys(data).forEach(function(key,index)
 	{
 		var val = data[key];
@@ -85,8 +85,8 @@ function createMap(latLong,polygon)
 
 function getData()
 {
-	var pNum = get("parcelnumber");
-	if (!pNum)
+	var id = get("id");
+	if (!id)
 	{
 		throwError();
 		return;
@@ -94,7 +94,7 @@ function getData()
 	
 	
 	var sql = new cartodb.SQL({ user: 'cartomike' });
-	var mQ = 'SELECT *,ST_AsGeoJSON(ST_Centroid(the_geom)),ST_AsGeoJSON(the_geom) AS geom FROM parcels_carto WHERE parcelnumber = \'' + pNum + '\';';
+	var mQ = 'SELECT *,ST_AsGeoJSON(ST_Centroid(the_geom)),ST_AsGeoJSON(the_geom) AS geom FROM parcels_carto WHERE cartodb_id = \'' + id + '\';';
 	console.log(mQ);
 	$.ajax({
 		method: "POST",
