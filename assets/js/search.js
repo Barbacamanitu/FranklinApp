@@ -125,7 +125,7 @@ function openPopup(item)
 
    lPop.setContent(el[0].outerHTML);
    lPop.openOn(map);
-   map.setView(coords,16,{animate: true});
+   map.setView(coords,18,{animate: true});
    map.invalidateSize();
 
 
