@@ -90,7 +90,19 @@ function openPopup(item)
    var coords = JSON.parse(item.centroid).coordinates.reverse();
    var lPop = L.popup();
    lPop.setLatLng(coords);
-   var html = '<div class="popup-container"> 	<div class="popup-header"> 		<span class="popup-header-title">Owner</span> 		<h3 id="owner-name"></h3> 	</div> 	<div class="popup-parcel-details"></div> 	<div class="report-link-container"> 		<a href="#" id="report-link">More information</a> 	</div> </div>';
+   
+   var html = `
+   <div class="popup-container">
+       <div class="popup-header">
+           <span class="popup-header-title">Owner</span>
+           <h3 id="owner-name"></h3>
+       </div>
+       <div class="popup-parcel-details"></div>
+       <div class="report-link-container">
+           <a href="#" target="_blank" id="report-link">More information</a>
+       </div>
+   </div>`;
+  
    var el = $(html);
    var details = el.find('.popup-parcel-details');
    el.find('#report-link').attr('href','report/index.html?id=' + item.cartodb_id);

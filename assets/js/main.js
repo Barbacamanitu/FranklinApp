@@ -5,14 +5,14 @@ function handleSidebarVisibility()
         //Show sidebar
         $("#map").hide();
         $("#sidebar").show();
-        $("#sidebarToggleText").text('View map');
+        $("#sidebarToggleText").text('Map');
     }
     else
     {
         //Show map
         $("#map").show();
         $("#sidebar").hide();
-        $("#sidebarToggleText").text('View Controls');
+        $("#sidebarToggleText").text('Controls');
     }
 }
 
